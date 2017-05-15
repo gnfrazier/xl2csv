@@ -4,6 +4,7 @@ output.csv
 scratchpad.py
 *.xlsx
 *.xls
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
