@@ -2,6 +2,7 @@
 
 import xlrd
 import os
+import csv
 
 
 def get_path():
@@ -29,15 +30,27 @@ def get_header(sheet):
 
 
 def to_columns(sheet, header, ignore):
+    head = ('Date', 'Category', 'Value')
+    csv_write(head, 'w')
     for i in range(len(header)):
         colname = sheet.cell(0, i)
         if header[i] not in ignore:
             numrows = sheet.nrows
             for row in range(numrows):
-                rowdata = (sheet.cell(row, 0),
-                           colname,
-                           sheet.cell(row, i))
-                print(rowdata)
+                if row == 0:
+                    pass
+                else:
+                    rowdata = (sheet.cell(row, 0).value,
+                               colname.value,
+                               sheet.cell(row, i).value)
+                    print(rowdata)
+                    csv_write(rowdata, 'a')
+
+
+def csv_write(rowdata, wtype):
+    with open('pldata.csv', wtype, newline='') as csvfile:
+        writer = csv.writer(csvfile, dialect='excel')
+        writer.writerow(rowdata)
 
 
 name = 'PL Data'
