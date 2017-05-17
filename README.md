@@ -14,8 +14,9 @@ Create a new directory.
 Put excel file in the same working directory.  
 Excel sheet must have column names in row 1 or be formatted as a table.  
 Open a python command prompt (REPL)  
+  
     import xl2csv as xl  
-      
+            
     workbook = 'excel-file-to-open.xlsx'
     name = 'Sheet1' #sheet name  
     ignore = ['columnname1', 'columnname2', 'columnname3'] #list of columns to ignore
